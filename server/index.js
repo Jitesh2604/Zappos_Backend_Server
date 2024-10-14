@@ -16,7 +16,7 @@ app.use(cors({
     credentials: true, 
   }));
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
     res.send("connected!")
 });
 
