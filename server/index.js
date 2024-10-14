@@ -16,9 +16,9 @@ app.use(cors({
     credentials: true, 
   }));
 
-// app.use("/", (req, res) => {
-//     res.send("connected!")
-// });
+app.use("/", (req, res) => {
+    res.send("connected!")
+});
 
 app.use("/api/user", userRoute);
 
