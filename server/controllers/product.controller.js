@@ -48,5 +48,22 @@ exports.getProductByCategory = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
-}    
+};
+
+exports.searchProductByName = async (req, res) => {
+    try {
+        const { name } = req.params;
+
+        // Use a case-insensitive search for the product name
+        const products = await Product.find({ name: { $regex: name, $options: "i" } }).populate('category');
+
+        if (products.length === 0) {
+            return res.status(404).json({ message: "No products found with that name" });
+        }
+
+        res.json(products);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
 
